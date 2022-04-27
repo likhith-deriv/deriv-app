@@ -1,40 +1,43 @@
 import { observer } from 'mobx-react-lite';
+import plur from 'plur';
 import React from 'react';
 import { useStores } from 'Stores';
 import { HintBox, Text } from '@deriv/components';
 import { localize } from 'Components/i18next';
-import { minutesToHours } from 'Utils/date-time';
+import { minutesToHoursAndDays } from 'Utils/date-time';
+
+const generateBannerInformation = (value, text) => {
+    if (value > 0) {
+        return { value, text: value > 1 ? plur(text) : text };
+    }
+    return { value: '', text: '' };
+};
 
 const ReduceOrderTimeBanner = () => {
     const { general_store } = useStores();
     const { order_timeout } = general_store;
 
-    let render_banner_text = '';
+    const { days, hours, minutes } = minutesToHoursAndDays(order_timeout);
 
-    const { hours, minutes } = minutesToHours(order_timeout);
-
-    if (hours === 0 && minutes === 0) {
+    if (days === 0 && hours === 0 && minutes === 0) {
         return null;
     }
 
-    if (hours > 0) {
-        if (minutes > 0) {
-            render_banner_text = localize(
-                'New orders are now active for {{hours}} hour and {{minutes}} minutes only. Complete your order before it expires!',
-                { hours, minutes }
-            );
-        } else if (minutes === 0) {
-            render_banner_text = localize(
-                'New orders are now active for {{hours}} hour only. Complete your order before it expires!',
-                { hours }
-            );
+    const time_in_days = generateBannerInformation(days, 'day');
+    const time_in_hours = generateBannerInformation(hours, 'hour');
+    const time_in_minutes = generateBannerInformation(minutes, 'minute');
+
+    const render_banner_text = localize(
+        'New orders are now active for {{days}} {{day_text}} {{hours}} {{hour_text}} {{minutes}} {{minute_text}} only. Complete your order before it expires!',
+        {
+            days: time_in_days.value,
+            day_text: time_in_days.text,
+            hours: time_in_hours.value,
+            hour_text: time_in_hours.text,
+            minutes: time_in_minutes.value,
+            minute_text: time_in_minutes.text,
         }
-    } else {
-        render_banner_text = localize(
-            'New orders are now active for {{minutes}} minutes only. Complete your order before it expires!',
-            { minutes }
-        );
-    }
+    );
 
     return (
         <HintBox

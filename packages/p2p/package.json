@@ -41,6 +41,7 @@
         "lodash.debounce": "^4.0.8",
         "mobx": "^5.15.7",
         "mobx-react-lite": "^2.2.2",
+        "plur":"^5.1.0",
         "prop-types": "^15.7.2",
         "react": "^16.14.0",
         "react-content-loader": "^4.3.2",
