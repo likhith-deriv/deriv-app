@@ -93,7 +93,6 @@ const TradingAssessment = ({
     return (
         <Formik
             initialValues={initial_form_values ?? form_data}
-            enableReinitialize
             onSubmit={values => {
                 setFormData(values);
                 handleSubmit(values);
@@ -107,7 +106,7 @@ const TradingAssessment = ({
                                 title={localize('Trading Experience')}
                                 subtitle={localize('All fields are required')}
                             />
-                            {trading_assessment_questions.map(item => {
+                            {trading_assessment_questions.map((item, index) => {
                                 if (item.field_type === 'radio') {
                                     const form_control = item.form_control;
                                     return (
@@ -155,7 +154,7 @@ const TradingAssessment = ({
                                     // eslint-disable-next-line no-else-return
                                 } else {
                                     return (
-                                        <React.Fragment>
+                                        <React.Fragment key={index}>
                                             {item.questions.map(items => {
                                                 const form_control = items.form_control;
                                                 return (
