@@ -43,6 +43,7 @@ const TradingAssessment = ({
             history.push(routes.personal_details);
         } else {
             WS.authorized.storage.getFinancialAssessment().then(data => {
+                // set initial form data
                 setInitialFormValues(populateData(data.get_financial_assessment));
             });
         }
