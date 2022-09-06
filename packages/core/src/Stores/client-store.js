@@ -130,7 +130,6 @@ export default class ClientStore extends BaseStore {
     @observable mt5_trading_servers = [];
     @observable dxtrade_trading_servers = [];
     @observable is_cfd_poi_completed = false;
-    @observable is_financial_information_not_complete = false;
 
     @observable cfd_score = 0;
 
