@@ -1,4 +1,4 @@
-const getKebabCase = str => {
+const getKebabCase = (str: string) => {
     if (!str) return str;
     return str
         .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // get all lowercase letters that are near to uppercase ones
@@ -6,7 +6,7 @@ const getKebabCase = str => {
         .toLowerCase();
 };
 
-const getPascalCase = str => {
+const getPascalCase = (str: string) => {
     if (!str) return '';
     return (
         String(str)
