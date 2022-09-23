@@ -1,16 +1,13 @@
-const { EOL } = require('os');
-const path = require('path');
-const fs = require('fs');
-
-const glob = require('glob');
-
-const { getFileNameFromPath, getKebabCase, getPascalCase } = require('./helper');
-
-const icons_list = require('./icons');
+import { EOL } from 'os';
+import * as path from 'path';
+import * as fs from 'fs';
+import { sync } from 'glob';
+import { getFileNameFromPath, getKebabCase, getPascalCase } from './helper';
+import entries_object from './icons';
 
 function validateIcons(svgs_map) {
-    Object.keys(icons_list).forEach(icon_path => {
-        const short_path = icons_list[icon_path].replace('.svg', '').replace('./src/components/icon/', '');
+    Object.keys(entries_object).forEach(icon_path => {
+        const short_path = entries_object[icon_path].replace('.svg', '').replace('./src/components/icon/', '');
         const dir_name = path.dirname(short_path);
 
         const file_name = getFileNameFromPath(short_path);
@@ -28,8 +25,8 @@ function validateIcons(svgs_map) {
     });
 }
 
-function buildIconsManifest() {
-    const sprite_bundles = glob.sync('./lib/icon/sprites/**/*.svg');
+export function buildIconsManifest() {
+    const sprite_bundles = sync('./lib/icon/sprites/**/*.svg');
 
     const svgs_map = sprite_bundles.reduce((acc, fname) => {
         const name = getFileNameFromPath(fname);
@@ -46,4 +43,4 @@ function buildIconsManifest() {
     fs.writeFileSync(path.join(__dirname, '../src/components/icon/icons-manifest.js'), buffer.join(EOL) + EOL);
 }
 
-module.exports.buildIconsManifest = buildIconsManifest;
+// export default buildIconsManifest;

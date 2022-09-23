@@ -12,4 +12,4 @@ const entries_object = icons.reduce((acc: { [key: string]: string }, fname: stri
     return acc;
 }, {});
 
-module.exports = entries_object;
+export default entries_object;

@@ -2,15 +2,13 @@
  * Generate components/icon/icons.js & stories/icon/icons.js entries file automatically
  */
 
-const { EOL } = require('os');
-const path = require('path');
-const fs = require('fs');
+import { EOL } from 'os';
+import * as path from 'path';
+import * as fs from 'fs';
+import { getFileNameFromPath, getPascalCase } from './helper';
+import entries_object from './icons';
 
-const { getFileNameFromPath, getPascalCase } = require('./helper');
-
-const entries_object = require('./icons');
-
-function buildIcons() {
+export function buildIcons() {
     /* eslint-disable no-console */
     console.info('Build icons starting.');
 
@@ -53,4 +51,4 @@ function buildIcons() {
     console.info(`Build icons done. 'components/icon/icons.js' emitted with ${modules} modules.`);
 }
 
-module.exports.buildIcons = buildIcons;
+// export default buildIcons;
