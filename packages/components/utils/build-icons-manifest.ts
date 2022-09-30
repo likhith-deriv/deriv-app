@@ -42,5 +42,3 @@ export function buildIconsManifest() {
 
     fs.writeFileSync(path.join(__dirname, '../src/components/icon/icons-manifest.js'), buffer.join(EOL) + EOL);
 }
-
-// export default buildIconsManifest;

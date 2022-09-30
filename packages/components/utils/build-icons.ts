@@ -50,5 +50,3 @@ export function buildIcons() {
     /* eslint-disable no-console */
     console.info(`Build icons done. 'components/icon/icons.js' emitted with ${modules} modules.`);
 }
-
-// export default buildIcons;
