@@ -10,9 +10,10 @@
   "scripts": {
     "start": "rimraf lib && npm run test && npm run serve",
     "serve": "rimraf lib && cross-env BUILD_MODE='serve' webpack --mode=production --progress --watch",
-    "build": "rimraf lib && npm run build:icons && webpack --mode=production --progress && npm run build:icons-manifest",
-    "build:icons": "node --loader ts-node -e 'import(\"./utils/build-icons\").then(({buildIcons})=>buildIcons())'",
-    "build:icons-manifest": "node --loader ts-node-esm -e 'import(\"./utils/build-icons-manifest\").then(({buildIconsManifest})=>buildIconsManifest())'",
+    "build": "rimraf lib && npm run bootstrap:icons || npm run build:icons && webpack --mode=production --progress && npm run build:icons-manifest && rimraf dist",
+    "bootstrap:icons":"tsc ./utils/index.ts --outdir dist --excludeDirectories **/node_modules",
+    "build:icons": "node -e 'import(\"./dist/build-icons.js\").then(({buildIcons})=>buildIcons())'",
+    "build:icons-manifest": "node -e 'import(\"./dist/build-icons-manifest.js\").then(({buildIconsManifest})=>buildIconsManifest())'",
     "build:travis": "rimraf lib && webpack --mode=production",
     "test": "node \"./src/components/icon/__tests__/icons.js\"",
     "test:eslint": "eslint \"./src/**/*.?(js|jsx)\"",
