@@ -130,7 +130,7 @@ export default class ClientStore extends BaseStore {
     dxtrade_trading_servers = [];
     is_cfd_poi_completed = false;
 
-    @observable cfd_score = 0;
+    cfd_score = 0;
 
     is_mt5_account_list_updated = false;
 
@@ -192,6 +192,7 @@ export default class ClientStore extends BaseStore {
             mt5_trading_servers: observable,
             dxtrade_trading_servers: observable,
             is_cfd_poi_completed: observable,
+            cfd_score: observable,
             balance: computed,
             account_open_date: computed,
             is_reality_check_visible: computed,
@@ -228,7 +229,10 @@ export default class ClientStore extends BaseStore {
             is_authentication_needed: computed,
             is_identity_verification_needed: computed,
             is_tnc_needed: computed,
+            real_account_creation_unlock_date: computed,
             is_social_signup: computed,
+            is_risky_client: computed,
+            is_financial_assessment_incomplete: computed,
             isEligibleForMoreDemoMt5Svg: action.bound,
             isEligibleForMoreRealMt5: action.bound,
             setIsCfdPoiCompleted: action.bound,
@@ -279,6 +283,7 @@ export default class ClientStore extends BaseStore {
             getLimits: action.bound,
             setPreferredLanguage: action.bound,
             setCookieAccount: action.bound,
+            setCFDScore: action.bound,
             updateSelfExclusion: action.bound,
             responsePayoutCurrencies: action.bound,
             responseAuthorize: action.bound,
@@ -355,6 +360,7 @@ export default class ClientStore extends BaseStore {
             fetchFinancialAssessment: action.bound,
             setTwoFAStatus: action.bound,
             getTwoFAStatus: action.bound,
+            setFinancialAndTradingAssessment: action.bound,
         });
 
         reaction(
@@ -627,7 +633,6 @@ export default class ClientStore extends BaseStore {
         );
     }
 
-    @computed
     get is_risky_client() {
         if (isEmptyObject(this.account_status)) return false;
         return (
@@ -637,12 +642,10 @@ export default class ClientStore extends BaseStore {
         );
     }
 
-    @computed
     get is_financial_assessment_incomplete() {
         return this.account_status?.status?.includes('financial_assessment_not_complete');
     }
 
-    @computed
     get is_authentication_needed() {
         return !this.is_fully_authenticated && !!this.account_status?.authentication?.needs_verification?.length;
     }
@@ -652,13 +655,11 @@ export default class ClientStore extends BaseStore {
         return needs_verification?.length === 1 && needs_verification?.includes('identity');
     }
 
-    @computed
     get real_account_creation_unlock_date() {
         const { cooling_off_expiration_date } = this.account_settings;
         return cooling_off_expiration_date;
     }
 
-    @computed
     get is_tnc_needed() {
         if (this.is_virtual) return false;
         const { client_tnc_status } = this.account_settings;
@@ -1112,7 +1113,6 @@ export default class ClientStore extends BaseStore {
         }
     }
 
-    @action.bound
     setCFDScore(score) {
         this.cfd_score = score;
     }
@@ -2426,13 +2426,11 @@ export default class ClientStore extends BaseStore {
         });
     }
 
-    @action.bound
     async setFinancialAndTradingAssessment(payload) {
         const response = await WS.setFinancialAndTradingAssessment(payload);
         return response;
     }
 
-    @action.bound
     setTwoFAStatus(status) {
         this.has_enabled_two_fa = status;
     }
