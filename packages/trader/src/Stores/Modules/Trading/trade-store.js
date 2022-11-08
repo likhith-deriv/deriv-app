@@ -143,6 +143,8 @@ export default class TradeStore extends BaseStore {
 
     should_skip_prepost_lifecycle = false;
 
+    spot_price = '';
+
     constructor({ root_store }) {
         const local_storage_properties = [
             'amount',
@@ -236,6 +238,7 @@ export default class TradeStore extends BaseStore {
             cancellation_range_list: observable,
             is_trade_params_expanded: observable,
             should_skip_prepost_lifecycle: observable,
+            spot_price: observable,
             is_symbol_in_active_symbols: computed,
             setSkipPrePostLifecycle: action.bound,
             setTradeStatus: action.bound,
@@ -295,6 +298,7 @@ export default class TradeStore extends BaseStore {
             is_multiplier: computed,
             is_vanilla: computed,
             getFirstOpenMarket: action.bound,
+            setSpotPrice: action.bound,
         });
 
         // Adds intercept to change min_max value of duration validation
@@ -669,13 +673,15 @@ export default class TradeStore extends BaseStore {
         if (!proposal_info) {
             return;
         }
-        const { contract_type, barrier, high_barrier, low_barrier } = proposal_info;
+        const { contract_type, barrier, high_barrier, low_barrier, duration_unit } = proposal_info;
 
         if (isBarrierSupported(contract_type)) {
             const color = this.root_store.ui.is_dark_mode_on ? BARRIER_COLORS.DARK_GRAY : BARRIER_COLORS.GRAY;
+            const is_not_draggable = this.is_vanilla && ['m', 'h'].includes(duration_unit);
             // create barrier only when it's available in response
             this.main_barrier = new ChartBarrierStore(barrier || high_barrier, low_barrier, this.onChartBarrierChange, {
                 color,
+                not_draggable: is_not_draggable,
             });
             // this.main_barrier.updateBarrierShade(true, contract_type);
         } else {
@@ -1001,6 +1007,7 @@ export default class TradeStore extends BaseStore {
     }
 
     onProposalResponse(response) {
+        this.setSpotPrice(response?.proposal?.spot);
         const contract_type = response.echo_req.contract_type;
         const prev_proposal_info = getPropertyValue(this.proposal_info, contract_type) || {};
         const obj_prev_contract_basis = getPropertyValue(prev_proposal_info, 'obj_contract_basis') || {};
@@ -1365,5 +1372,9 @@ export default class TradeStore extends BaseStore {
             return undefined;
         }
         return findFirstOpenMarket(active_symbols, markets_to_search);
+    }
+
+    setSpotPrice(spot) {
+        this.spot_price = spot;
     }
 }
