@@ -649,11 +649,13 @@ export default class TradersHubStore extends BaseStore {
         }
         return short_code_and_region;
     }
+
     setCombinedCFDMT5Accounts() {
         this.combined_cfd_mt5_accounts = [];
         this.available_mt5_accounts?.forEach(account => {
             const existing_accounts = this.getExistingAccounts(account.platform, account.market_type);
             const has_existing_accounts = existing_accounts.length > 0;
+            const is_poi_revoked = this.root_store.client.is_idv_revoked;
             if (has_existing_accounts) {
                 existing_accounts.forEach(existing_account => {
                     this.combined_cfd_mt5_accounts = [
@@ -669,7 +671,10 @@ export default class TradersHubStore extends BaseStore {
                             platform: account.platform,
                             description: existing_account.display_login,
                             key: `trading_app_card_${existing_account.display_login}`,
-                            action_type: 'multi-action',
+                            action_type:
+                                is_poi_revoked && existing_account.status === 'poa_failed'
+                                    ? 'poi_revoked'
+                                    : 'multi-action',
                             availability: this.selected_region,
                             market_type: account.market_type,
                         },

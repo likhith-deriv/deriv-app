@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 import MultiActionButtonGroup from 'Components/multi-action-button-group';
 
 export type Actions = {
-    action_type: 'get' | 'none' | 'trade' | 'dxtrade' | 'multi-action'; // multi-action can be tranfer_trade or top_up_trade
+    action_type: 'get' | 'none' | 'trade' | 'dxtrade' | 'multi-action' | 'poi_revoked'; // multi-action can be tranfer_trade or top_up_trade
     clickable_icon?: boolean;
     link_to?: string;
     has_divider?: boolean;
@@ -45,6 +45,12 @@ const TradingAppCardActions = ({
                     is_buttons_disabled={is_buttons_disabled}
                     is_real={is_real}
                 />
+            );
+        case 'poi_revoked':
+            return (
+                <Button primary onClick={() => onAction?.()}>
+                    {localize('Resubmit document')}
+                </Button>
             );
         case 'none':
         default:

@@ -780,6 +780,10 @@ export default class ClientStore extends BaseStore {
         return this.account_status?.status?.some(status => status === 'age_verification');
     }
 
+    get is_idv_revoked() {
+        return this.account_status?.status?.some(status => status === 'idv_revoked');
+    }
+
     get landing_company_shortcode() {
         if (this.accounts[this.loginid]) {
             return this.accounts[this.loginid].landing_company_shortcode;

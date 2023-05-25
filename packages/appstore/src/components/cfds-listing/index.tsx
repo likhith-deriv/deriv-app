@@ -53,7 +53,7 @@ const CFDsListing = () => {
         financial_restricted_countries,
     } = traders_hub;
 
-    const { toggleCompareAccountsModal, setAccountType } = cfd;
+    const { toggleCompareAccountsModal, setAccountType, toggleCFDVerificationModal } = cfd;
     const { is_landing_company_loaded, real_account_creation_unlock_date } = client;
     const { setAppstorePlatform } = common;
     const { openDerivRealAccountNeededModal, setShouldShowCooldownModal } = ui;
@@ -180,6 +180,13 @@ const CFDsListing = () => {
                                         } else {
                                             startTrade(existing_account.platform, existing_account);
                                         }
+                                    } else if (existing_account.action_type === 'poi_revoked') {
+                                        setAccountType({
+                                            category: selected_account_type,
+                                            type: existing_account.market_type,
+                                        });
+                                        setAppstorePlatform(existing_account.platform);
+                                        toggleCFDVerificationModal();
                                     }
                                 }}
                                 mt5_acc_auth_status={has_mt5_account_status}
