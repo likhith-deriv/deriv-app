@@ -1,15 +1,8 @@
 import classNames from 'classnames';
 import React, { HTMLAttributes, RefObject } from 'react';
-import { Field, Formik, FormikHandlers, FormikProps, FormikState, FormikValues } from 'formik';
+import { Field, Formik, FormikHandlers, FormikProps, FormikState } from 'formik';
 import { AutoHeightWrapper, FormSubmitButton, Div100vhContainer, Modal, ThemedScrollbars } from '@deriv/components';
-import {
-    getPlatformSettings,
-    isMobile,
-    isDesktop,
-    reorderCurrencies,
-    PlatformContext,
-    getAddressDetailsFields,
-} from '@deriv/shared';
+import { getPlatformSettings, reorderCurrencies, PlatformContext, getAddressDetailsFields } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
 import RadioButtonGroup from './radio-button-group';
 import RadioButton from './radio-button';
@@ -86,7 +79,8 @@ const CurrencySelector = observer(
 
         const has_currency = Boolean(currency);
 
-        const { real_account_signup, real_account_signup_target, resetRealAccountSignupParams } = ui;
+        const { real_account_signup, real_account_signup_target, resetRealAccountSignupParams, is_desktop, is_mobile } =
+            ui;
         const crypto = legal_allowed_currencies.filter(
             selected_currency => selected_currency.type === CURRENCY_TYPE.CRYPTO
         );
@@ -218,10 +212,10 @@ const CurrencySelector = observer(
                                 <Div100vhContainer
                                     className={classNames('currency-selector__container', {
                                         'currency-selector__container--no-top-margin':
-                                            !has_currency && has_real_account && isMobile(),
+                                            !has_currency && has_real_account && is_mobile,
                                     })}
                                     height_offset={getHeightOffset()}
-                                    is_disabled={isDesktop()}
+                                    is_disabled={is_desktop}
                                 >
                                     <ThemedScrollbars height={height}>
                                         {!!reorderCurrencies(fiat)?.length && (
@@ -278,7 +272,7 @@ const CurrencySelector = observer(
                                         )}
                                     </ThemedScrollbars>
                                 </Div100vhContainer>
-                                <Modal.Footer is_bypassed={isMobile()}>
+                                <Modal.Footer is_bypassed={is_mobile}>
                                     <FormSubmitButton
                                         className={
                                             set_currency

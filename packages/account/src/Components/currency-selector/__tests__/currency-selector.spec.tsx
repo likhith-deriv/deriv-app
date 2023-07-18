@@ -1,14 +1,8 @@
 import React from 'react';
 import { fireEvent, screen, render, waitFor } from '@testing-library/react';
-import { isDesktop, isMobile, PlatformContext } from '@deriv/shared';
+import { PlatformContext } from '@deriv/shared';
 import CurrencySelector, { TCurrencySelector } from '../currency-selector';
 import { StoreProvider, mockStore } from '@deriv/stores';
-
-jest.mock('@deriv/shared', () => ({
-    ...jest.requireActual('@deriv/shared'),
-    isDesktop: jest.fn().mockReturnValue(false),
-    isMobile: jest.fn().mockReturnValue(false),
-}));
 
 jest.mock('../../real-account-signup/helpers/utils.ts', () => ({
     splitValidationResultTypes: jest.fn(() => ({
@@ -410,22 +404,28 @@ describe('<CurrencySelector/>', () => {
     });
 
     it('should render the selector__container with proper div height when appstore is true', () => {
-        (isMobile as jest.Mock).mockReturnValue(true);
-        (isDesktop as jest.Mock).mockReturnValue(false);
         Object.defineProperty(window, 'innerHeight', {
             writable: true,
             configurable: true,
             value: 150,
         });
+
+        const new_store = {
+            ...store,
+            ui: {
+                ...store.ui,
+                is_desktop: false,
+                is_mobile: true,
+            },
+        };
+
         const new_provider_config = { is_appstore: true, is_deriv_crypto: false, is_pre_appstore: false };
-        renderComponent({ provider_config: new_provider_config });
+        renderComponent({ provider_config: new_provider_config, store_config: new_store });
 
         expect(screen.getByTestId('currency_selector_form').childNodes[0]).toHaveStyle('height: calc(150px - 222px);');
     });
 
     it('should render the selector__container with proper div height', () => {
-        (isMobile as jest.Mock).mockReturnValue(true);
-        (isDesktop as jest.Mock).mockReturnValue(false);
         Object.defineProperty(window, 'innerHeight', {
             writable: true,
             configurable: true,
@@ -436,6 +436,11 @@ describe('<CurrencySelector/>', () => {
             client: {
                 ...store.client,
                 has_active_real_account: true,
+            },
+            ui: {
+                ...store.ui,
+                is_desktop: false,
+                is_mobile: true,
             },
         };
         renderComponent({ store_config: new_store });
