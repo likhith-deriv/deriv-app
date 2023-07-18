@@ -12,6 +12,7 @@ import type {
     SetFinancialAssessmentRequest,
     SetFinancialAssessmentResponse,
     StatesList,
+    WebsiteStatus,
 } from '@deriv/api-types';
 import type { Moment } from 'moment';
 import type { RouteComponentProps } from 'react-router';
@@ -219,6 +220,16 @@ type TDXTraderStatusServerType = Record<'all' | 'demo' | 'real', number>;
 
 type TMt5StatusServer = Record<'demo' | 'real', TMt5StatusServerType[]>;
 
+type RealAccountSignupSettings = {
+    active_modal_index: number;
+    previous_currency: string;
+    current_currency: string;
+    success_message: string;
+    error_message: string;
+    error_code?: string;
+    error_details?: string;
+};
+
 type TClientStore = {
     fetchStatesList: () => Promise<StatesList>;
     accounts: { [k: string]: TActiveAccount };
@@ -231,7 +242,8 @@ type TClientStore = {
     };
     account_list: TAccountsList;
     account_status: GetAccountStatus;
-    available_crypto_currencies: string[];
+    available_crypto_currencies: Array<WebsiteStatus['currencies_config']>;
+    upgradeable_currencies: Array<WebsiteStatus['currencies_config']>;
     balance?: string | number;
     can_change_fiat_currency: boolean;
     cfd_score: number;
@@ -351,6 +363,7 @@ type TClientStore = {
     has_account_error_in_mt5_demo_list: boolean;
     has_account_error_in_dxtrade_real_list: boolean;
     has_account_error_in_dxtrade_demo_list: boolean;
+    has_fiat: boolean;
     is_fully_authenticated: boolean;
     states_list: StatesList;
     /** @deprecated Use `useCurrencyConfig` or `useCurrentCurrencyConfig` from `@deriv/hooks` package instead. */
@@ -452,6 +465,7 @@ type TUiStore = {
     is_top_up_virtual_open: boolean;
     is_top_up_virtual_in_progress: boolean;
     is_top_up_virtual_success: boolean;
+    real_account_signup_target: string;
     closeSuccessTopUpModal: () => void;
     closeTopUpModal: () => void;
     is_cfd_reset_password_modal_enabled: boolean;
@@ -460,6 +474,8 @@ type TUiStore = {
     is_accounts_switcher_on: boolean;
     openTopUpModal: () => void;
     is_reset_trading_password_modal_visible: boolean;
+    real_account_signup: RealAccountSignupSettings;
+    resetRealAccountSignupParams: () => void;
     setResetTradingPasswordModalOpen: () => void;
     populateHeaderExtensions: (header_items: JSX.Element | null) => void;
     populateSettingsExtensions: (menu_items: Array<TPopulateSettingsExtensionsMenuItem> | null) => void;

@@ -11,7 +11,7 @@ import {
 } from '@deriv/account';
 
 import AddressDetails from './address-details';
-import CurrencySelector from './currency-selector.jsx';
+import CurrencySelector from '@deriv/account/src/Components/currency-selector';
 import FinancialDetails from './financial-details.jsx';
 
 const isMaltaAccount = ({ real_account_signup_target }) => real_account_signup_target === 'maltainvest';

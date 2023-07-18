@@ -149,3 +149,7 @@ export type TPersonalDetailsForm = {
 } & FormikProps<FormikValues>;
 
 export type TInputFieldValues = Record<string, string>;
+
+export type TCurrencySelectorFormProps = {
+    currency: string;
+};
