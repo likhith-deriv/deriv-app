@@ -5,7 +5,7 @@ import { Text } from '@deriv/components';
 
 export const Hr = () => <div className='terms-of-use__hr' />;
 
-export const BrokerSpecificMessage = ({ target }) => (
+export const BrokerSpecificMessage = ({ target }: { target: string }) => (
     <React.Fragment>
         {target === 'svg' && <SVGDescription />}
         {target === 'iom' && <IOMDescription />}

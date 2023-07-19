@@ -11,9 +11,30 @@ import {
 } from '@deriv/components';
 import { isDesktop, isMobile, PlatformContext } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
-import CheckboxField from './checkbox-field.jsx';
-import { SharedMessage, BrokerSpecificMessage, Hr } from './terms-of-use-messages.jsx';
+import CheckboxField from './checkbox-field';
+import { SharedMessage, BrokerSpecificMessage, Hr } from './terms-of-use-messages';
 import './terms-of-use.scss';
+
+type TTermsOfUseFormProps = {
+    agreed_tos: boolean;
+    agreed_tnc: boolean;
+};
+
+type TTermsOfUseProps = {
+    getCurrentStep: () => number;
+    onCancel: (current_step: number, goToPreviousStep: () => void) => void;
+    goToPreviousStep: () => void;
+    goToNextStep: () => void;
+    onSubmit: (
+        current_step: number | null,
+        values: TTermsOfUseFormProps,
+        action: (isSubmitting: boolean) => void,
+        next_step: () => void
+    ) => void;
+    value: TTermsOfUseFormProps;
+    real_account_signup_target: string;
+    form_error?: string;
+};
 
 const TermsOfUse = ({
     getCurrentStep,
@@ -24,7 +45,7 @@ const TermsOfUse = ({
     value,
     real_account_signup_target,
     ...props
-}) => {
+}: TTermsOfUseProps) => {
     const { is_appstore } = React.useContext(PlatformContext);
 
     const handleCancel = () => {
@@ -43,7 +64,7 @@ const TermsOfUse = ({
         <Formik
             initialValues={value}
             onSubmit={(values, actions) => {
-                onSubmit(getCurrentStep() - 1, {}, actions.setSubmitting, goToNextStep);
+                onSubmit(getCurrentStep() - 1, values, actions.setSubmitting, goToNextStep);
             }}
         >
             {({ handleSubmit, values, isSubmitting }) => (
@@ -56,10 +77,7 @@ const TermsOfUse = ({
                                 is_disabled={isDesktop()}
                             >
                                 <ThemedScrollbars>
-                                    <div
-                                        className={cn('details-form__elements', 'terms-of-use')}
-                                        style={{ paddingBottom: isDesktop() ? 'unset' : null }}
-                                    >
+                                    <div className={cn('details-form__elements', 'terms-of-use')}>
                                         <BrokerSpecificMessage target={real_account_signup_target} />
                                         <Hr />
                                         <SharedMessage />
