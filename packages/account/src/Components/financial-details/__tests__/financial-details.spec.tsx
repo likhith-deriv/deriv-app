@@ -135,6 +135,6 @@ describe('<FinancialDetails />', () => {
 
         userEvent.selectOptions(income_source_select as HTMLElement, 'Salaried Employee');
 
-        expect(screen.getByRole('option', { name: 'Salaried Employee' }).selected).toBe(false);
+        expect(screen.getByRole('option', { name: 'Salaried Employee' }).selected).toBe(true);
     });
 });
