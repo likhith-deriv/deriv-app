@@ -7,7 +7,7 @@ import { localize, Localize } from '@deriv/translations';
 import RadioButtonGroup from './radio-button-group';
 import RadioButton from './radio-button';
 import { splitValidationResultTypes } from '../real-account-signup/helpers/utils';
-import { TCurrencyConfig, TCurrencySelectorFormProps } from 'Types';
+import { TCurrencyConfig } from 'Types';
 import { observer, useStore } from '@deriv/stores';
 import { WebsiteStatus } from '@deriv/api-types';
 
@@ -16,6 +16,10 @@ export const Hr = () => <div className='currency-hr' />;
 const CURRENCY_TYPE = {
     CRYPTO: 'crypto',
     FIAT: 'fiat',
+};
+
+export type TCurrencySelectorFormProps = {
+    currency: string;
 };
 
 type TCurrencySelectorExtend = {

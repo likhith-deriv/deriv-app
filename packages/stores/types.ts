@@ -243,7 +243,6 @@ type TClientStore = {
     account_list: TAccountsList;
     account_status: GetAccountStatus;
     available_crypto_currencies: Array<WebsiteStatus['currencies_config']>;
-    upgradeable_currencies: Array<WebsiteStatus['currencies_config']>;
     balance?: string | number;
     can_change_fiat_currency: boolean;
     cfd_score: number;
@@ -310,6 +309,7 @@ type TClientStore = {
     switched: boolean;
     switch_broadcast: boolean;
     switchEndSignal: () => void;
+    upgradeable_currencies: Array<WebsiteStatus['currencies_config']>;
     verification_code: {
         payment_agent_withdraw: string;
         payment_withdraw: string;
@@ -428,8 +428,9 @@ type TUiStore = {
     is_dark_mode_on: boolean;
     is_reports_visible: boolean;
     is_language_settings_modal_on: boolean;
-    is_mobile: boolean;
     is_desktop: boolean;
+    is_mobile: boolean;
+    is_tablet: boolean;
     sub_section_index: number;
     toggleShouldShowRealAccountsList: (value: boolean) => void;
     openRealAccountSignup: (
@@ -448,7 +449,6 @@ type TUiStore = {
     toggleLanguageSettingsModal: () => void;
     toggleReadyToDepositModal: () => void;
     toggleSetCurrencyModal: () => void;
-    is_tablet: boolean;
     removeToast: (key: string) => void;
     is_ready_to_deposit_modal_visible: boolean;
     reports_route_tab_index: number;
