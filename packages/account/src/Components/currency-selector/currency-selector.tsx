@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { HTMLAttributes, RefObject } from 'react';
 import { Field, Formik, FormikHandlers, FormikProps, FormikState } from 'formik';
 import { AutoHeightWrapper, FormSubmitButton, Div100vhContainer, Modal, ThemedScrollbars } from '@deriv/components';
-import { getPlatformSettings, reorderCurrencies, PlatformContext, getAddressDetailsFields } from '@deriv/shared';
+import { getPlatformSettings, reorderCurrencies, getAddressDetailsFields } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
 import RadioButtonGroup from './radio-button-group';
 import RadioButton from './radio-button';
@@ -47,6 +47,26 @@ type TCurrencySelectorExtend = {
 
 type TCurrencySelector = HTMLAttributes<HTMLInputElement | HTMLLabelElement> & TCurrencySelectorExtend;
 
+/**
+ * Currency selector component to select the Account currency
+ * @name CurrencySelector
+ * @param {Function} getCurrentStep - Get the current step
+ * @param {Function} goToNextStep - Go to the next step
+ * @param {Function} goToStep - Go to a specific step
+ * @param {Function} goToPreviousStep - Go to the previous step
+ * @param {boolean} has_cancel - Has cancel button
+ * @param {boolean} has_wallet_account - Has wallet account
+ * @param {boolean} is_virtual - Is virtual account
+ * @param {Function} onCancel - To handle click on cancel button
+ * @param {Function} onSave - To handle click on save button
+ * @param {Function} onSubmit - To handle click on submit button
+ * @param {Function} onSubmitEnabledChange - To handle if submit button is enabled or disabled
+ * @param {RefObject} selected_step_ref - Ref of the selected step
+ * @param {boolean} set_currency - Is current set
+ * @param {Function} validate - To validate the form
+ * @param {Object} value - Value of the form
+ * @returns {React.ReactNode} React node
+ */
 const CurrencySelector = observer(
     ({
         getCurrentStep,
@@ -299,6 +319,5 @@ const CurrencySelector = observer(
         );
     }
 );
-export type { TCurrencySelector };
 
 export default CurrencySelector;

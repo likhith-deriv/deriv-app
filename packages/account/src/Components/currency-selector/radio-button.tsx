@@ -12,6 +12,19 @@ type TRadioButtonExtend = {
 
 export type TRadioButton = AllHTMLAttributes<HTMLInputElement | HTMLLabelElement> & TRadioButtonExtend;
 
+/**
+ *  RadioButton component to select currency
+ * @name RadioButton
+ * @param {InputHTMLAttributes<HTMLInputElement>} field - field props given by Formik
+ * @param {string} icon - icon name
+ * @param {string} id - currency id
+ * @param {string} label - currency name
+ * @param {string} second_line_label - currency code
+ * @param {Function} onClick - function to be called on click
+ * @param {AllHTMLAttributes<HTMLInputElement | HTMLLabelElement>} props - other props to be passed
+ * @returns {React.ReactNode} - returns a React node
+ */
+
 const RadioButton = ({
     field: { name, value, onChange, onBlur },
     icon,

@@ -222,12 +222,12 @@ type TMt5StatusServer = Record<'demo' | 'real', TMt5StatusServerType[]>;
 
 type RealAccountSignupSettings = {
     active_modal_index: number;
-    previous_currency: string;
     current_currency: string;
-    success_message: string;
-    error_message: string;
     error_code?: string;
     error_details?: string;
+    error_message: string;
+    previous_currency: string;
+    success_message: string;
 };
 
 type TClientStore = {

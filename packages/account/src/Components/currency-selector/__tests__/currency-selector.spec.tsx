@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent, screen, render, waitFor } from '@testing-library/react';
-import { PlatformContext } from '@deriv/shared';
-import CurrencySelector, { TCurrencySelector } from '../currency-selector';
+import CurrencySelector from '../currency-selector';
 import { StoreProvider, mockStore } from '@deriv/stores';
 
 jest.mock('../../real-account-signup/helpers/utils.ts', () => ({
@@ -12,7 +11,7 @@ jest.mock('../../real-account-signup/helpers/utils.ts', () => ({
 }));
 
 describe('<CurrencySelector/>', () => {
-    const mock_props: TCurrencySelector = {
+    const mock_props: React.ComponentProps<typeof CurrencySelector> = {
         value: {
             currency: '',
         },
