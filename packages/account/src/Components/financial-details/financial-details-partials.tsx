@@ -20,6 +20,15 @@ type TFinancialDetailsDropdownFieldProps = {
     label: string;
 };
 
+/**
+ * Dropdown field for financial details form.
+ * @name FinancialDetailsDropdownField
+ * @param {Array<object>} dropdown_list - list of dropdown items
+ * @param {string} field_key - field reference of the field
+ * @param {string} placeholder - placeholder of the field
+ * @param {string} label - label of the field
+ * @returns {JSX.Element}
+ */
 const FinancialDetailsDropdownField = ({
     dropdown_list,
     field_key,
@@ -71,6 +80,11 @@ const FinancialDetailsDropdownField = ({
     );
 };
 
+/**
+ * Wrapper for financial details form fields.
+ * @name FinancialInformation
+ * @returns {JSX.Element}
+ */
 const FinancialInformation = () => {
     return (
         <React.Fragment>
