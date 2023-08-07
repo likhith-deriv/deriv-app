@@ -9,8 +9,14 @@ type TCheckboxFieldProps = {
     label: string;
 };
 
-/*
+/**
  * This component is used with Formik's Field component.
+ * @param {FieldInputProps<boolean>} field - Formik's field props
+ * @param {string} id - Checkbox id
+ * @param {string} className - Class name for styling
+ * @param {string} label - Checkbox label
+ * @param {object} props - Other props
+ * @returns {React.ReactNode} - React node
  */
 const CheckboxField = ({ field: { name, value, onChange }, id, label, className, ...props }: TCheckboxFieldProps) => {
     return (

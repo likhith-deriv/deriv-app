@@ -37,6 +37,19 @@ type TTermsOfUseProps = {
     form_error?: string;
 };
 
+/**
+ * Terms of use component for account signup
+ * @param {Function} getCurrentStep - function to get current step
+ * @param {Function} onCancel - function to cancel account signup
+ * @param {Function} goToPreviousStep - function to go to previous step
+ * @param {Function} goToNextStep - function to go to next step
+ * @param {Function} onSubmit - function to submit form
+ * @param {object} value - form values
+ * @param {string} real_account_signup_target - broker code
+ * @param {string} form_error - form error
+ * @param {object} props - other props
+ * @returns {React.ReactNode} - React node
+ */
 const TermsOfUse = ({
     getCurrentStep,
     onCancel,
