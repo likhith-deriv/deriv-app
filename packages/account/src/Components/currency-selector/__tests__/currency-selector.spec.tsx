@@ -27,7 +27,6 @@ describe('<CurrencySelector/>', () => {
         goToPreviousStep: jest.fn(),
         has_cancel: false,
         has_wallet_account: false,
-        is_appstore: false,
         set_currency: false,
         onSubmitEnabledChange: jest.fn(),
     };
@@ -43,7 +42,7 @@ describe('<CurrencySelector/>', () => {
     const mt5_non_eu =
         'You are limited to one fiat account. You won’t be able to change your account currency if you have already made your first deposit or created a real Deriv MT5 account.';
 
-    const runCommonTests = msg => {
+    const runCommonTests = (msg: string) => {
         expect(screen.getByRole('heading', { name: /fiat currencies/i })).toBeInTheDocument();
         expect(screen.getByRole('radio', { name: /us dollar \(usd\)/i })).toBeInTheDocument();
         expect(screen.getByRole('radio', { name: /euro \(eur\)/i })).toBeInTheDocument();
@@ -76,7 +75,6 @@ describe('<CurrencySelector/>', () => {
                     token: '',
                     email: '',
                     session_start: 1651059038,
-                    excluded_until: '',
                     landing_company_name: 'virtual',
                     residence: 'es',
                     balance: 10000,
@@ -235,16 +233,10 @@ describe('<CurrencySelector/>', () => {
         },
     });
 
-    const provider_settings = {
-        is_appstore: false,
-    };
-
-    const renderComponent = ({ props = mock_props, store_config = store, provider_config = provider_settings }) => {
+    const renderComponent = ({ props = mock_props, store_config = store }) => {
         return render(
             <StoreProvider store={store_config}>
-                <PlatformContext.Provider value={provider_config}>
-                    <CurrencySelector {...props} />
-                </PlatformContext.Provider>
+                <CurrencySelector {...props} />
             </StoreProvider>
         );
     };
@@ -401,28 +393,6 @@ describe('<CurrencySelector/>', () => {
         await waitFor(() => {
             expect(mock_props.onSubmit).toHaveBeenCalled();
         });
-    });
-
-    it('should render the selector__container with proper div height when appstore is true', () => {
-        Object.defineProperty(window, 'innerHeight', {
-            writable: true,
-            configurable: true,
-            value: 150,
-        });
-
-        const new_store = {
-            ...store,
-            ui: {
-                ...store.ui,
-                is_desktop: false,
-                is_mobile: true,
-            },
-        };
-
-        const new_provider_config = { is_appstore: true, is_deriv_crypto: false, is_pre_appstore: false };
-        renderComponent({ provider_config: new_provider_config, store_config: new_store });
-
-        expect(screen.getByTestId('currency_selector_form').childNodes[0]).toHaveStyle('height: calc(150px - 222px);');
     });
 
     it('should render the selector__container with proper div height', () => {

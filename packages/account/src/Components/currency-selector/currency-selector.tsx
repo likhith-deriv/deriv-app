@@ -29,7 +29,6 @@ type TCurrencySelectorExtend = {
     goToPreviousStep: () => void;
     has_cancel: boolean;
     has_wallet_account: boolean;
-    is_appstore: boolean;
     is_virtual: boolean;
     onCancel: (current_step: number, goToPreviousStep: () => void) => void;
     onSave: (current_step: number, values: TCurrencySelectorFormProps) => void;
@@ -65,8 +64,6 @@ const CurrencySelector = observer(
         has_wallet_account,
         value,
     }: TCurrencySelector) => {
-        const { is_appstore } = React.useContext(PlatformContext);
-
         const { client, ui } = useStore();
 
         const {
@@ -147,9 +144,7 @@ const CurrencySelector = observer(
         }, [is_bypass_step]);
 
         const getHeightOffset = () => {
-            if (is_appstore) {
-                return '222px';
-            } else if (!has_currency && has_real_account) {
+            if (!has_currency && has_real_account) {
                 return '89px';
             }
             return '159px';
@@ -285,7 +280,7 @@ const CurrencySelector = observer(
                                         }
                                         is_disabled={isSubmitDisabled(values)}
                                         is_center={false}
-                                        is_absolute={set_currency || is_appstore}
+                                        is_absolute={set_currency}
                                         label={getSubmitLabel()}
                                         {...(has_cancel
                                             ? {
