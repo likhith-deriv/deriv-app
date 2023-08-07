@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Formik, FormikValues } from 'formik';
+import { Formik } from 'formik';
 import React from 'react';
 import {
     AutoHeightWrapper,
@@ -14,30 +14,47 @@ import { Localize, localize } from '@deriv/translations';
 import FinancialInformation from './financial-details-partials';
 import { splitValidationResultTypes } from '../real-account-signup/helpers/utils';
 
-export type TFinancialDetails = {
+type TFinancialDetailsFormValues = {
+    income_source: string;
+    employment_industry: string;
+    occupation: string;
+    source_of_wealth: string;
+    education_level: string;
+    net_income: string;
+    estimated_worth: string;
+    account_turnover: string;
+};
+
+type TFinancialDetails = {
     goToPreviousStep: () => void;
     goToNextStep: () => void;
     getCurrentStep: () => number;
-    onSave: (current_step: number, values: FormikValues) => void;
+    onSave: (current_step: number, values: TFinancialDetailsFormValues) => void;
     onSubmit: (
         current_step: number,
-        values: FormikValues,
+        values: TFinancialDetailsFormValues,
         actions: (isSubmitting: boolean) => void,
         props: () => void
     ) => void;
     onCancel: (current_step: number, props: () => void) => void;
-    validate: (values: FormikValues) => object;
-    value: object;
+    validate: (values: TFinancialDetailsFormValues) => object;
+    value: TFinancialDetailsFormValues;
 };
 
+/**
+ * A wrapper for the financial details form.
+ * @name FinancialDetails
+ * @param {TFinancialDetails} props  - props of the component
+ * @returns {React.ReactNode} React component that renders FinancialDetails form.
+ */
 const FinancialDetails = (props: TFinancialDetails) => {
-    const handleCancel = (values: FormikValues) => {
+    const handleCancel = (values: TFinancialDetailsFormValues) => {
         const current_step = props.getCurrentStep() - 1;
         props.onSave(current_step, values);
         props.onCancel(current_step, props.goToPreviousStep);
     };
 
-    const handleValidate = (values: FormikValues) => {
+    const handleValidate = (values: TFinancialDetailsFormValues) => {
         const { errors } = splitValidationResultTypes(props.validate(values));
         return errors;
     };

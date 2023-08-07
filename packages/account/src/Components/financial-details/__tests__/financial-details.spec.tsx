@@ -3,7 +3,7 @@ import React from 'react';
 import { isDesktop, isMobile } from '@deriv/shared';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FinancialDetails, { TFinancialDetails } from '../financial-details';
+import FinancialDetails from '../financial-details';
 
 jest.mock('@deriv/shared', () => ({
     ...jest.requireActual('@deriv/shared'),
@@ -16,7 +16,7 @@ modal_root_el.setAttribute('id', 'modal_root');
 document.body.appendChild(modal_root_el);
 
 describe('<FinancialDetails />', () => {
-    const mock_props: TFinancialDetails = {
+    const mock_props: React.ComponentProps<typeof FinancialDetails> = {
         getCurrentStep: jest.fn(),
         goToNextStep: jest.fn(),
         onCancel: jest.fn(),
