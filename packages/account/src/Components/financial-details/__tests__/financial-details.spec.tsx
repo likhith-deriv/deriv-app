@@ -1,9 +1,9 @@
-import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { isDesktop, isMobile } from '@deriv/shared';
-import FinancialDetails, { TFinancialDetails } from '../financial-details';
 import { FormikValues } from 'formik';
+import React from 'react';
+import { isDesktop, isMobile } from '@deriv/shared';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import FinancialDetails, { TFinancialDetails } from '../financial-details';
 
 jest.mock('@deriv/shared', () => ({
     ...jest.requireActual('@deriv/shared'),
