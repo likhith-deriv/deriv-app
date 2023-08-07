@@ -11,6 +11,7 @@ import {
 } from '@deriv/components';
 import { isDesktop, isMobile, PlatformContext } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
+import { TBrokerCodes } from 'Types';
 import CheckboxField from './checkbox-field';
 import { SharedMessage, BrokerSpecificMessage, Hr } from './terms-of-use-messages';
 import './terms-of-use.scss';
@@ -32,7 +33,7 @@ type TTermsOfUseProps = {
         next_step: () => void
     ) => void;
     value: TTermsOfUseFormProps;
-    real_account_signup_target: string;
+    real_account_signup_target: TBrokerCodes;
     form_error?: string;
 };
 

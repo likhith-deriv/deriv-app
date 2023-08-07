@@ -149,3 +149,5 @@ export type TPersonalDetailsForm = {
 } & FormikProps<FormikValues>;
 
 export type TInputFieldValues = Record<string, string>;
+
+export type TBrokerCodes = 'svg' | 'iom' | 'malta' | 'maltainvest' | 'samoa';
