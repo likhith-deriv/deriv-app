@@ -66,6 +66,27 @@ type TAutoComplete = {
     text: string;
 };
 
+/**
+ * Component to display address details form
+ * @name AddressDetails
+ * @param {Function} getCurrentStep - function to get current step
+ * @param {Function} onSave - function to save form values
+ * @param {Function} onCancel - function to cancel form values
+ * @param {Function} goToNextStep - function to go to next step
+ * @param {Function} goToPreviousStep - function to go to previous step
+ * @param {Function} validate - function to validate form values
+ * @param {Function} onSubmit - function to submit form values
+ * @param {boolean} is_svg - is broker code SVG
+ * @param {boolean} is_mf - is broker code MF
+ * @param {boolean} is_gb_residence - is residence Great Britan
+ * @param {Function} onSubmitEnabledChange - function to change submit button status
+ * @param {React.RefObject} selected_step_ref - reference to selected step
+ * @param {Function} fetchStatesList - function to fetch states list
+ * @param {Object} value - form values
+ * @param {Array} disabled_items - array of disabled fields
+ * @param {boolean} has_real_account - has real account
+ * @returns {React.ReactNode} - returns react node
+ */
 const AddressDetails = observer(
     ({
         getCurrentStep,
@@ -84,7 +105,6 @@ const AddressDetails = observer(
         has_real_account,
         ...props
     }: TAddressDetails) => {
-        const { is_appstore } = React.useContext(PlatformContext);
         const [has_fetched_states_list, setHasFetchedStatesList] = React.useState(false);
         const [address_state_to_display, setAddressStateToDisplay] = React.useState('');
 
@@ -170,39 +190,29 @@ const AddressDetails = observer(
                             <form ref={setRef} onSubmit={handleSubmit}>
                                 <Div100vhContainer
                                     className='details-form'
-                                    height_offset={is_appstore ? '222px' : '90px'}
+                                    height_offset='90px'
                                     is_disabled={is_desktop}
                                 >
-                                    {!is_appstore && (
-                                        <Text
-                                            as='p'
-                                            align='left'
-                                            size='xxs'
-                                            line_height='l'
-                                            className='details-form__description'
-                                        >
-                                            <strong>
-                                                <Localize i18n_default_text='Only use an address for which you have proof of residence - ' />
-                                            </strong>
-                                            <Localize i18n_default_text='a recent utility bill (e.g. electricity, water, gas, landline, or internet), bank statement, or government-issued letter with your name and this address.' />
-                                        </Text>
-                                    )}
+                                    <Text
+                                        as='p'
+                                        align='left'
+                                        size='xxs'
+                                        line_height='l'
+                                        className='details-form__description'
+                                    >
+                                        <strong>
+                                            <Localize i18n_default_text='Only use an address for which you have proof of residence - ' />
+                                        </strong>
+                                        <Localize i18n_default_text='a recent utility bill (e.g. electricity, water, gas, landline, or internet), bank statement, or government-issued letter with your name and this address.' />
+                                    </Text>
+
                                     <ThemedScrollbars height={height} className='details-form__scrollbar'>
-                                        {is_appstore && (
-                                            <div className='details-form__sub-header'>
-                                                <Text size={is_mobile ? 'xs' : 'xxs'} align={is_mobile ? 'center' : ''}>
-                                                    {localize(
-                                                        'We need this for verification. If the information you provide is fake or inaccurate, you won’t be able to deposit and withdraw.'
-                                                    )}
-                                                </Text>
-                                            </div>
-                                        )}
                                         <div className={classNames('details-form__elements', 'address-details-form ')}>
                                             <FormInputField
                                                 name='address_line_1'
-                                                required={is_svg || is_appstore || is_mf}
+                                                required={is_svg || is_mf}
                                                 label={
-                                                    is_svg || is_appstore || is_mf
+                                                    is_svg || is_mf
                                                         ? localize('First line of address*')
                                                         : localize('First line of address')
                                                 }
@@ -215,12 +225,7 @@ const AddressDetails = observer(
                                             />
                                             <FormInputField
                                                 name='address_line_2'
-                                                required={is_appstore}
-                                                label={
-                                                    is_appstore
-                                                        ? localize('Second line of address*')
-                                                        : localize('Second line of address')
-                                                }
+                                                label={localize('Second line of address')}
                                                 maxLength={255}
                                                 placeholder={localize('Second line of address')}
                                                 disabled={
@@ -230,12 +235,8 @@ const AddressDetails = observer(
                                             />
                                             <FormInputField
                                                 name='address_city'
-                                                required={is_svg || is_appstore || is_mf}
-                                                label={
-                                                    is_svg || is_appstore || is_mf
-                                                        ? localize('Town/City*')
-                                                        : localize('Town/City')
-                                                }
+                                                required={is_svg || is_mf}
+                                                label={is_svg || is_mf ? localize('Town/City*') : localize('Town/City')}
                                                 placeholder={localize('Town/City')}
                                                 disabled={
                                                     disabled_items.includes('address_city') ||
@@ -273,7 +274,7 @@ const AddressDetails = observer(
                                                                         );
                                                                         setAddressStateToDisplay('');
                                                                     }}
-                                                                    list_portal_id={is_appstore ? '' : 'modal_root'}
+                                                                    list_portal_id='modal_root'
                                                                     disabled={
                                                                         disabled_items.includes('address_state') ||
                                                                         (props.value?.address_state && has_real_account)
@@ -320,12 +321,8 @@ const AddressDetails = observer(
                                             )}
                                             <FormInputField
                                                 name='address_postcode'
-                                                required={is_gb_residence || is_appstore}
-                                                label={
-                                                    is_appstore
-                                                        ? localize('Postal/ZIP Code*')
-                                                        : localize('Postal/ZIP Code')
-                                                }
+                                                required={is_gb_residence}
+                                                label={localize('Postal/ZIP Code')}
                                                 placeholder={localize('Postal/ZIP Code')}
                                                 onChange={e => {
                                                     setFieldTouched('address_postcode', true);
