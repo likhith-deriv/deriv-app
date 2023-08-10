@@ -26,6 +26,7 @@ export type TRadioButtonGroup = {
  * @returns {React.ReactNode} - returns a React node
  */
 const RadioButtonGroup = ({
+    children,
     label,
     className,
     is_title_enabled = true,
