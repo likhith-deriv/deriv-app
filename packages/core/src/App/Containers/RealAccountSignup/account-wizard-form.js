@@ -1,4 +1,5 @@
 import {
+    FinancialDetails,
     PersonalDetails,
     TermsOfUse,
     TradingAssessmentNewUser,
