@@ -1,27 +1,30 @@
-import React, { InputHTMLAttributes, AllHTMLAttributes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Icon } from '@deriv/components';
 import { getCurrencyDisplayCode } from '@deriv/shared';
 import USTPopover from './ust-popover';
 
 type TRadioButtonExtend = {
-    field: InputHTMLAttributes<HTMLInputElement>;
+    field: React.InputHTMLAttributes<HTMLInputElement>;
     icon?: string;
     second_line_label?: string;
+    id: string;
+    label: string;
+    onClick?: (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void;
 };
 
-export type TRadioButton = AllHTMLAttributes<HTMLInputElement | HTMLLabelElement> & TRadioButtonExtend;
+export type TRadioButton = React.AllHTMLAttributes<HTMLInputElement | HTMLLabelElement> & TRadioButtonExtend;
 
 /**
  *  RadioButton component to select currency
  * @name RadioButton
- * @param {InputHTMLAttributes<HTMLInputElement>} field - field props given by Formik
+ * @param {React.InputHTMLAttributes<HTMLInputElement>} field - field props given by Formik
  * @param {string} icon - icon name
  * @param {string} id - currency id
  * @param {string} label - currency name
  * @param {string} second_line_label - currency code
  * @param {Function} onClick - function to be called on click
- * @param {AllHTMLAttributes<HTMLInputElement | HTMLLabelElement>} props - other props to be passed
+ * @param {React.AllHTMLAttributes<HTMLInputElement | HTMLLabelElement>} props - other props to be passed
  * @returns {React.ReactNode} - returns a React node
  */
 
