@@ -1,11 +1,11 @@
 // Checks if pathname matches route. (Works even with query string /?)
-import React from 'react';
+
 // TODO: Add test cases for this
-type TRoute = {
-    component?: JSX.Element | null;
+export type TRoute = {
+    component?: React.ElementType | null;
     default?: boolean;
     exact?: boolean;
-    getTitle?: () => string;
+    getTitle: () => string;
     icon_component?: string;
     id?: string;
     is_authenticated?: boolean;
