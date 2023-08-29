@@ -9,7 +9,7 @@ import { Localize } from '@deriv/translations';
  * @returns React Component
  */
 const TradingHubLogout = ({ handleOnLogout }: { handleOnLogout: () => void }) => (
-    <div className='dc-vertical-tab__header-account__logout-tab' onClick={handleOnLogout}>
+    <div className='dc-vertical-tab__header-account__logout-tab' onClick={handleOnLogout} data-testid='dt_logout_tab'>
         <div className='dc-vertical-tab__header-account__logout'>
             <Icon icon='IcLogout' className='dc-vertical-tab__header-account__logout--icon' />
             <Text size='xs' weight='bold'>

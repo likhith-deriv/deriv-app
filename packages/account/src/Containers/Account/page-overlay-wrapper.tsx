@@ -1,16 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { PageOverlay, VerticalTab } from '@deriv/components';
-import { TRoute, getSelectedRoute, getStaticUrl, routes as shared_routes } from '@deriv/shared';
+import { getSelectedRoute, getStaticUrl, routes as shared_routes } from '@deriv/shared';
 import { observer, useStore } from '@deriv/stores';
-import TradingHubLogout from './tradinghub-logout';
 import { Localize } from '@deriv/translations';
+import TradingHubLogout from './tradinghub-logout';
+import { TRoute } from '../../Types';
 
 type RouteItems = React.ComponentProps<typeof VerticalTab>['list'];
-type RouteRef = Array<RouteItems[0] & { subroutes: RouteItems }>;
 
 type PageOverlayWrapperProps = {
-    routes: RouteRef;
+    routes: Array<TRoute>;
     subroutes: RouteItems;
 };
 
@@ -30,8 +30,8 @@ const PageOverlayWrapper = observer(({ routes, subroutes }: PageOverlayWrapperPr
 
     const list_groups = routes.map(route_group => ({
         icon: route_group.icon,
-        label: route_group.getTitle(),
-        subitems: route_group.subroutes.map(sub => subroutes.indexOf(sub)),
+        label: route_group?.getTitle(),
+        subitems: route_group?.subroutes?.length ? route_group.subroutes.map(sub => subroutes.indexOf(sub)) : [],
     }));
 
     const onClickClose = React.useCallback(() => routeBackInApp(history), [routeBackInApp, history]);
@@ -46,7 +46,7 @@ const PageOverlayWrapper = observer(({ routes, subroutes }: PageOverlayWrapperPr
     if (is_mobile && selected_route) {
         const RouteComponent = selected_route.component as React.ElementType<{ component_icon: string | undefined }>;
         return (
-            <PageOverlay header={selected_route.getTitle()} onClickClose={onClickClose} is_from_app={is_from_derivgo}>
+            <PageOverlay header={selected_route?.getTitle()} onClickClose={onClickClose} is_from_app={is_from_derivgo}>
                 <RouteComponent component_icon={selected_route.icon_component} />
             </PageOverlay>
         );
