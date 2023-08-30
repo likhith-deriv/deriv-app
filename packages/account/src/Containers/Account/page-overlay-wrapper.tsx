@@ -26,8 +26,6 @@ const PageOverlayWrapper = observer(({ routes, subroutes }: PageOverlayWrapperPr
     const { logout } = client;
     const { is_from_derivgo, routeBackInApp } = common;
 
-    // const routeToPrevious = () => history.push(shared_routes.traders_hub);
-
     const list_groups = routes.map(route_group => ({
         icon: route_group.icon,
         label: route_group?.getTitle(),

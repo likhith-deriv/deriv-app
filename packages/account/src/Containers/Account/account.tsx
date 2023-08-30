@@ -3,7 +3,6 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { FadeWrapper, Loading } from '@deriv/components';
 import { matchRoute, routes as shared_routes } from '@deriv/shared';
 import { observer, useStore } from '@deriv/stores';
-import { flatten } from '../../Helpers/flatten';
 import PageOverlayWrapper from './page-overlay-wrapper';
 import { TRoute } from '../../Types';
 import 'Styles/account.scss';
@@ -31,7 +30,7 @@ const Account = observer(({ history, location, routes }: TAccountProps) => {
         should_allow_authentication,
     } = client;
     const { toggleAccountSettings, is_account_settings_visible } = ui;
-    const subroutes = flatten(routes.map(i => i.subroutes));
+    const subroutes = routes.map(i => i.subroutes);
     let selected_content = subroutes.find(r => matchRoute(r, location.pathname));
 
     React.useEffect(() => {

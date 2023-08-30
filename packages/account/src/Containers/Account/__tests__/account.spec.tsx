@@ -1,10 +1,10 @@
 import React from 'react';
 import { MemoryRouter, BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import Account from '../account';
 import { StoreProvider, mockStore } from '@deriv/stores';
 import { routes } from '@deriv/shared';
-import { TStores } from '@deriv/stores/types';
+import { TRoute } from 'Types';
+import Account from '../account';
 
 jest.mock('../../Account/page-overlay-wrapper', () => jest.fn(() => <div>MockPageOverlayWrapper</div>));
 
@@ -20,7 +20,7 @@ describe('Account', () => {
         },
     });
 
-    const route_list = [
+    const route_list: Array<TRoute> = [
         {
             getTitle: () => 'Profile',
             icon: 'mockIcon',
@@ -63,7 +63,7 @@ describe('Account', () => {
     });
 
     it('should render loader while the client is still logging in', () => {
-        const new_store_config: TStores = mockStore({
+        const new_store_config = mockStore({
             client: {
                 is_logging_in: true,
             },
