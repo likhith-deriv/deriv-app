@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Text } from '@deriv/components';
-import { localize, Localize } from '@deriv/translations';
+import { Localize } from '@deriv/translations';
 import { getUrlBase } from '@deriv/shared';
 
 type TSampleCreditCardModalProps = {
