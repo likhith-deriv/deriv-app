@@ -1,6 +1,6 @@
 import path from 'path';
-import { BuildEnv, BuildPaths } from './src/build/types/build-types';
-import { buildWebpackConfig } from './src/build/build-webpack-config';
+import { BuildEnv, BuildPaths } from './build/types/build-types';
+import { buildWebpackConfig } from './build/build-webpack-config';
 import { Configuration } from 'webpack';
 
 const isRelease =

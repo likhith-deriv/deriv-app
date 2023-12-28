@@ -71,7 +71,13 @@ export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
             'sass-loader',
             {
                 loader: 'sass-resources-loader',
-                options: {},
+                options: {
+                    // Provide path to the file with resources
+                    resources: [
+                        // eslint-disable-next-line global-require, import/no-dynamic-require
+                        ...require('../../shared/src/styles/index.js'),
+                    ],
+                },
             },
         ],
     };

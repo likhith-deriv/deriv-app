@@ -8,5 +8,5 @@
         }
     },
     "include": ["src", "../../utils.d.ts"],
-    "exclude": ["./node_modules/*"]
+    "exclude": ["../shared/**/*", "./node_modules/*"]
 }

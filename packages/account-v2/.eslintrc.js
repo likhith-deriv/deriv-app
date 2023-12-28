@@ -23,9 +23,10 @@ module.exports = {
         'simple-import-sort',
         'sort-destructure-keys',
         'typescript-sort-keys',
+        'sonarjs',
     ],
     root: true,
-    ignorePatterns: ['**/node_modules/**', '**/dist/**', '**/*.js', '**/webpack.config.*'],
+    ignorePatterns: ['**/node_modules/**', '**/dist/**', '**/*.js', '**/*.config.*'],
     rules: {
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
