@@ -23,7 +23,6 @@ module.exports = {
         'simple-import-sort',
         'sort-destructure-keys',
         'typescript-sort-keys',
-        'sonarjs',
     ],
     root: true,
     ignorePatterns: ['**/node_modules/**', '**/dist/**', '**/*.js', '**/*.config.*'],
