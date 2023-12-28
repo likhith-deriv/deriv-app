@@ -5,9 +5,9 @@ import './index.scss';
 
 const App: React.FC = () => (
     <APIProvider standalone>
-        <div className='h-200 bg-solid-coral-500 w-400'>Account V2</div>
-        <div>
-            <BrandDerivLogoCoralIcon />
+        <div className=' text-solid-slate-500 text-heading-h1'>Account V2</div>
+        <div className='p-300'>
+            <BrandDerivLogoCoralIcon height='120px' width='120px' />
         </div>
     </APIProvider>
 );
