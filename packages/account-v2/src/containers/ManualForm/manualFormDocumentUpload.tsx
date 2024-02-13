@@ -1,6 +1,6 @@
 import React from 'react';
+import { Text } from '@deriv-com/ui';
 import { Dropzone } from '../../components/base/Dropzone';
-import { WalletText } from '../../components/base/WalletText';
 import { TManualDocumentTypes } from '../../constants/manualFormConstants';
 import { getTitleForDocumentUpload, getUploadConfig } from '../../utils/manualFormUtils';
 
@@ -11,7 +11,7 @@ export const ManualFormDocumentUpload = ({ selectedDocument }: TManualFormDocume
 
     return (
         <div className='flex flex-col gap-1200 pt-1200 border-t-solid-grey-2 border-solid border-t-100'>
-            <WalletText>{getTitleForDocumentUpload(selectedDocument)}</WalletText>
+            <Text>{getTitleForDocumentUpload(selectedDocument)}</Text>
             <div className='flex flex-col lg:flex-row gap-1200 w-full justify-between'>
                 {uploadConfig.map(upload => (
                     <div className='w-full' key={upload.fileUploadText}>

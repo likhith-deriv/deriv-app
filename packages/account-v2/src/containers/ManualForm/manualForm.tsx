@@ -8,12 +8,12 @@ import { ManualFormFooter } from './manualFormFooter';
 import { ManualFormInputs } from './manualFormInputs';
 
 type TManualFormProps = {
+    onCancel: () => void;
     onSubmit: (values: typeof MANUAL_FORM_INITIAL_VALUES) => void;
     selectedDocument: TManualDocumentTypes;
-    onCancel: () => void;
 };
 
-export const ManualForm = ({ onSubmit, selectedDocument, onCancel }: TManualFormProps) => (
+export const ManualForm = ({ onCancel, onSubmit, selectedDocument }: TManualFormProps) => (
     <div className='m-400 p-800 border-100 border-solid rounded-400'>
         <Formik
             initialValues={MANUAL_FORM_INITIAL_VALUES}
@@ -27,7 +27,7 @@ export const ManualForm = ({ onSubmit, selectedDocument, onCancel }: TManualForm
                         <ManualFormDocumentUpload selectedDocument={selectedDocument} />
                         <ManualFormFooter />
                         <div className='flex justify-end gap-800 bg-vp px-400 py-800 border-t-solid-grey-2 border-solid border-t-100'>
-                            <Button type='button' variant='outlined' onClick={onCancel}>
+                            <Button onClick={onCancel} type='button' variant='outlined'>
                                 Back
                             </Button>
                             <Button disabled={!isValid}>Next</Button>
