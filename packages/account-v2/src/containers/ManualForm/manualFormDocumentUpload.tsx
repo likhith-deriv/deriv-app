@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '@deriv-com/ui';
-import { Dropzone } from '../../components/base/Dropzone';
+import { Dropzone } from '../../components/Dropzone';
 import { TManualDocumentTypes } from '../../constants/manualFormConstants';
 import { getTitleForDocumentUpload, getUploadConfig } from '../../utils/manualFormUtils';
 
