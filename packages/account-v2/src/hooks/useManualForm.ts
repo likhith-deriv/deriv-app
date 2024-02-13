@@ -4,7 +4,7 @@ import { useSettings } from '@deriv/api';
 const useManualForm = () => {
     const { data: settings, ...rest } = useSettings();
     const countryCode = settings?.citizen ?? settings?.country_code;
-    const isExpiryDateRequired = countryCode !== 'ng';
+    const isExpiryDateRequired = countryCode && countryCode !== 'ng';
 
     return {
         isExpiryDateRequired,
