@@ -19,7 +19,7 @@ export const ManualForm = ({ onCancel, onSubmit, selectedDocument }: TManualForm
         onSubmit={onSubmit}
         validationSchema={() => getManualFormValidationSchema(selectedDocument)}
     >
-        {({ isValid }) => (
+        {({ isSubmitting, isValid }) => (
             <Form>
                 <div className='flex flex-col min-h-screen w-full'>
                     <div className='flex flex-col gap-1200'>
@@ -28,10 +28,12 @@ export const ManualForm = ({ onCancel, onSubmit, selectedDocument }: TManualForm
                         <ManualFormFooter />
                     </div>
                     <div className='sticky bottom-50 flex justify-end gap-800 bg-vp px-400 py-800 border-t-solid-grey-2 bg-solid-slate-50 border-solid border-t-100'>
-                        <Button onClick={onCancel} type='button' variant='outlined'>
+                        <Button disabled={isSubmitting} onClick={onCancel} size='lg' type='button' variant='outlined'>
                             Back
                         </Button>
-                        <Button disabled={!isValid}>Next</Button>
+                        <Button disabled={!isValid || isSubmitting} size='lg'>
+                            Next
+                        </Button>
                     </div>
                 </div>
             </Form>
