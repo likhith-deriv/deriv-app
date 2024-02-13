@@ -17,6 +17,7 @@ export const ManualFormDocumentUpload = ({ selectedDocument }: TManualFormDocume
                     <div className='w-full' key={upload.fileUploadText}>
                         <Dropzone
                             buttonText='Drop file or click here to upload'
+                            className='h-full'
                             description={upload.fileUploadText}
                             fileFormats={['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf']}
                             icon={upload.fileUploadIcon}
