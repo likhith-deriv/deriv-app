@@ -24,6 +24,7 @@ export const ManualFormInputs = ({ selectedDocument }: TManualFormInputsProps) =
                             <Input
                                 {...field}
                                 aria-label={fieldLabel}
+                                autoComplete='off'
                                 className='w-full'
                                 error={hasError}
                                 label={fieldLabel}
