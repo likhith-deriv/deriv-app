@@ -16,7 +16,6 @@ export const MANUAL_DOCUMENT_TYPES = Object.freeze({
 });
 
 export const MANUAL_FORM_INITIAL_VALUES = Object.freeze({
-    document_expiry: '',
     document_number: '',
 });
 
@@ -35,12 +34,16 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
             },
         },
         inputSectionHeader: 'First, enter your Driving licence number and the expiry date.',
-        upload: [
+        uploads: [
             {
+                fileUploadError: 'Front side of driving licence is required.',
+                fileUploadFieldName: 'driving_licence_front',
                 fileUploadIcon: <DrivingLicenseCardFront />,
                 fileUploadText: 'Upload the front of your driving licence.',
             },
             {
+                fileUploadError: 'Back side of driving licence is required.',
+                fileUploadFieldName: 'driving_licence_back',
                 fileUploadIcon: <IdentityCardBack />,
                 fileUploadText: 'Upload the back of your driving licence.',
             },
@@ -56,12 +59,16 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
             },
         },
         inputSectionHeader: 'First, enter your Identity card number and the expiry date.',
-        upload: [
+        uploads: [
             {
+                fileUploadError: 'Front side of identity card is required.',
+                fileUploadFieldName: 'identity_card_front',
                 fileUploadIcon: <IdentityCardFront />,
                 fileUploadText: 'Upload the front of your identity card.',
             },
             {
+                fileUploadError: 'Back side of identity card is required.',
+                fileUploadFieldName: 'identity_card_back',
                 fileUploadIcon: <IdentityCardBack />,
                 fileUploadText: 'Upload the back of your identity card.',
             },
@@ -77,12 +84,16 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
             },
         },
         inputSectionHeader: 'First, enter your NIMC slip number and the expiry date.',
-        upload: [
+        uploads: [
             {
+                fileUploadError: 'Front side of NIMC slip is required.',
+                fileUploadFieldName: 'nimc_slip_front',
                 fileUploadIcon: <NIMCSlipFront />,
                 fileUploadText: 'Upload your NIMC slip.',
             },
             {
+                fileUploadError: 'Back side of NIMC slip is required.',
+                fileUploadFieldName: 'nimc_slip_back',
                 fileUploadIcon: <ProofOfAgeIcon />,
                 fileUploadText: 'Upload your proof of age: birth certificate or age declaration document.',
             },
@@ -98,8 +109,10 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
             },
         },
         inputSectionHeader: 'First, enter your Passport number and the expiry date.',
-        upload: [
+        uploads: [
             {
+                fileUploadError: 'Front side of passport is required.',
+                fileUploadFieldName: 'passport_front',
                 fileUploadIcon: <PassportPlaceholder />,
                 fileUploadText: 'Upload the page of your passport that contains your photo.',
             },

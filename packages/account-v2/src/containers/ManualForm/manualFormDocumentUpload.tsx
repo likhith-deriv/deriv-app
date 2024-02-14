@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '@deriv-com/ui';
-import { Dropzone } from '../../components/Dropzone';
+import FormDocumentUploadField from '../../components/FormFields/FormDocumentUploadField';
 import { TManualDocumentTypes } from '../../constants/manualFormConstants';
 import { getTitleForDocumentUpload, getUploadConfig } from '../../utils/manualFormUtils';
 
@@ -15,14 +15,14 @@ export const ManualFormDocumentUpload = ({ selectedDocument }: TManualFormDocume
             <div className='flex flex-col lg:flex-row gap-1200 w-full justify-between'>
                 {uploadConfig.map(upload => (
                     <div className='w-full' key={upload.fileUploadText}>
-                        <Dropzone
+                        <FormDocumentUploadField
                             buttonText='Drop file or click here to upload'
                             className='h-full'
                             description={upload.fileUploadText}
                             fileFormats={['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf']}
                             icon={upload.fileUploadIcon}
                             maxSize={8388608}
-                            onFileChange={file => console.log(file.name)}
+                            name={upload.fileUploadFieldName}
                         />
                     </div>
                 ))}
