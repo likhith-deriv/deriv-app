@@ -22,7 +22,7 @@ export const ManualFormDocumentUpload = ({ selectedDocument }: TManualFormDocume
                             fileFormats={['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf']}
                             icon={upload.fileUploadIcon}
                             maxSize={8388608}
-                            name={upload.fileUploadFieldName}
+                            name={upload.fileUploadPageType}
                         />
                     </div>
                 ))}

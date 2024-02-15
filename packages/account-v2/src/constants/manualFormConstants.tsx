@@ -19,6 +19,12 @@ export const MANUAL_FORM_INITIAL_VALUES = Object.freeze({
     document_number: '',
 });
 
+const PAGE_TYPE = Object.freeze({
+    BACK: 'back',
+    FRONT: 'front',
+    PHOTO: 'photo',
+});
+
 const documentExpiry = {
     errorMessage: 'Expiry date is required.',
     label: 'Expiry date',
@@ -37,14 +43,14 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
         uploads: [
             {
                 fileUploadError: 'Front side of driving licence is required.',
-                fileUploadFieldName: 'driving_licence_front',
                 fileUploadIcon: <DrivingLicenseCardFront />,
+                fileUploadPageType: PAGE_TYPE.FRONT,
                 fileUploadText: 'Upload the front of your driving licence.',
             },
             {
                 fileUploadError: 'Back side of driving licence is required.',
-                fileUploadFieldName: 'driving_licence_back',
                 fileUploadIcon: <IdentityCardBack />,
+                fileUploadPageType: PAGE_TYPE.BACK,
                 fileUploadText: 'Upload the back of your driving licence.',
             },
         ],
@@ -62,14 +68,14 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
         uploads: [
             {
                 fileUploadError: 'Front side of identity card is required.',
-                fileUploadFieldName: 'identity_card_front',
                 fileUploadIcon: <IdentityCardFront />,
+                fileUploadPageType: PAGE_TYPE.FRONT,
                 fileUploadText: 'Upload the front of your identity card.',
             },
             {
                 fileUploadError: 'Back side of identity card is required.',
-                fileUploadFieldName: 'identity_card_back',
                 fileUploadIcon: <IdentityCardBack />,
+                fileUploadPageType: PAGE_TYPE.BACK,
                 fileUploadText: 'Upload the back of your identity card.',
             },
         ],
@@ -87,14 +93,14 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
         uploads: [
             {
                 fileUploadError: 'Front side of NIMC slip is required.',
-                fileUploadFieldName: 'nimc_slip_front',
                 fileUploadIcon: <NIMCSlipFront />,
+                fileUploadPageType: PAGE_TYPE.FRONT,
                 fileUploadText: 'Upload your NIMC slip.',
             },
             {
                 fileUploadError: 'Back side of NIMC slip is required.',
-                fileUploadFieldName: 'nimc_slip_back',
                 fileUploadIcon: <ProofOfAgeIcon />,
+                fileUploadPageType: PAGE_TYPE.BACK,
                 fileUploadText: 'Upload your proof of age: birth certificate or age declaration document.',
             },
         ],
@@ -112,8 +118,8 @@ export const MANUAL_DOCUMENT_TYPES_DATA = Object.freeze({
         uploads: [
             {
                 fileUploadError: 'Front side of passport is required.',
-                fileUploadFieldName: 'passport_front',
                 fileUploadIcon: <PassportPlaceholder />,
+                fileUploadPageType: PAGE_TYPE.FRONT,
                 fileUploadText: 'Upload the page of your passport that contains your photo.',
             },
         ],
