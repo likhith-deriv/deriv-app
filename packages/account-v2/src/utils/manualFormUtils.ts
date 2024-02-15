@@ -34,25 +34,25 @@ export const getManualFormValidationSchema = (
 
     const isDrivingLicenceRequired = selectedDocument === MANUAL_DOCUMENT_TYPES.DRIVING_LICENCE;
     const drivingLicenceValidation = {
-        driving_licence_back: isDrivingLicenceRequired ? uploadBackSideError : Yup.mixed().notRequired(),
-        driving_licence_front: isDrivingLicenceRequired ? uploadFrontSideError : Yup.mixed().notRequired(),
+        driving_licence_back: isDrivingLicenceRequired ? uploadBackSideError : Yup.string().notRequired(),
+        driving_licence_front: isDrivingLicenceRequired ? uploadFrontSideError : Yup.string().notRequired(),
     };
 
     const isIdentityCardRequired = selectedDocument === MANUAL_DOCUMENT_TYPES.NATIONAL_IDENTITY_CARD;
     const identityCardValidation = {
-        identity_card_back: isIdentityCardRequired ? uploadBackSideError : Yup.mixed().notRequired(),
-        identity_card_front: isIdentityCardRequired ? uploadFrontSideError : Yup.mixed().notRequired(),
+        identity_card_back: isIdentityCardRequired ? uploadBackSideError : Yup.string().notRequired(),
+        identity_card_front: isIdentityCardRequired ? uploadFrontSideError : Yup.string().notRequired(),
     };
 
     const isNimcSlipRequired = selectedDocument === MANUAL_DOCUMENT_TYPES.NIMC_SLIP;
     const nimcSlipValidation = {
-        nimc_slip_back: isNimcSlipRequired ? uploadBackSideError : Yup.mixed().notRequired(),
-        nimc_slip_front: isNimcSlipRequired ? uploadFrontSideError : Yup.mixed().notRequired(),
+        nimc_slip_back: isNimcSlipRequired ? uploadBackSideError : Yup.string().notRequired(),
+        nimc_slip_front: isNimcSlipRequired ? uploadFrontSideError : Yup.string().notRequired(),
     };
 
     const isPassportRequired = selectedDocument === MANUAL_DOCUMENT_TYPES.PASSPORT;
     const passportValidation = {
-        passport_front: isPassportRequired ? uploadFrontSideError : Yup.mixed().notRequired(),
+        passport_front: isPassportRequired ? uploadFrontSideError : Yup.string().notRequired(),
     };
 
     return Yup.object({
