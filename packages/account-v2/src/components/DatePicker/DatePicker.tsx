@@ -2,7 +2,7 @@ import React, { ComponentProps, useEffect, useRef, useState } from 'react';
 import Calendar, { CalendarProps } from 'react-calendar';
 import { useOnClickOutside } from 'usehooks-ts';
 import { Input } from '@deriv-com/ui';
-import CalendarIcon from '../../../assets/date-picker/ic-calendar.svg';
+import CalendarIcon from '../../assets/date-picker/ic-calendar.svg';
 import unixToDateString from '../base/utils';
 import { WalletTextFieldProps } from '../base/WalletTextField/WalletTextField';
 import 'react-calendar/dist/Calendar.css';
@@ -36,7 +36,7 @@ const WalletDatePicker = ({
     onChange,
     onDateChange,
 }: TDatePickerProps) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(defaultValue ? new Date(defaultValue) : null);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(defaultValue ? new Date('') : null);
     const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
     const datePickerRef = useRef<HTMLDivElement>(null);
 

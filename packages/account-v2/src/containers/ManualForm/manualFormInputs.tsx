@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Field, FieldProps } from 'formik';
 import { Input, Text } from '@deriv-com/ui';
-import { WalletDatePicker } from '../../components/DatePicker';
+import { DatePicker } from '../../components/DatePicker';
 import { TManualDocumentTypes } from '../../constants/manualFormConstants';
 import { useManualForm } from '../../hooks';
 import { getFieldsConfig, getTitleForFormInputs } from '../../utils/manualFormUtils';
@@ -37,7 +37,7 @@ export const ManualFormInputs = ({ selectedDocument }: TManualFormInputsProps) =
                 {isExpiryDateRequired && (
                     <Field name='document_expiry'>
                         {({ field, form, meta }: FieldProps) => (
-                            <WalletDatePicker
+                            <DatePicker
                                 {...field}
                                 errorMessage={meta.error}
                                 isInvalid={(meta.touched && !!meta.error) || !!form.errors.document_expiry}
