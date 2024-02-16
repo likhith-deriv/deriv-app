@@ -1,1 +1,1 @@
-export { default as WalletDatePicker } from './WalletDatePicker';
+export { default as DatePicker } from './DatePicker';

@@ -1,20 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ComponentProps, useEffect, useRef, useState } from 'react';
 import Calendar, { CalendarProps } from 'react-calendar';
 import { useOnClickOutside } from 'usehooks-ts';
 import { Input } from '@deriv-com/ui';
 import CalendarIcon from '../../../assets/date-picker/ic-calendar.svg';
 import unixToDateString from '../base/utils';
 import { WalletTextFieldProps } from '../base/WalletTextField/WalletTextField';
-import customFormatShortWeekday from './utils';
 import 'react-calendar/dist/Calendar.css';
-import './WalletDatePicker.scss';
+import './DatePicker.scss';
 
-interface TDatePickerProps extends WalletTextFieldProps {
+interface TDatePickerProps extends ComponentProps<typeof Input> {
+    errorMessage?: string;
     isInvalid?: WalletTextFieldProps['isInvalid'];
     maxDate?: Date;
     minDate?: Date;
     mobileAlignment?: 'above' | 'below';
     onDateChange: (formattedDate: string | null) => void;
+}
+
+function customFormatShortWeekday(_locale: string | undefined, date: Date) {
+    const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    return weekdays[date.getDay()];
 }
 
 // TODO: Move this component to @deriv-com/ui
