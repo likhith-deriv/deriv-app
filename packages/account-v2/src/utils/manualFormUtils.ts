@@ -41,8 +41,6 @@ export const getManualFormValidationSchema = (
     });
 };
 
-type Demo = Yup.InferType<ReturnType<typeof getManualFormValidationSchema>>;
-
 export const getSelfieValidationSchema = () => {
     return Yup.object({
         [MANUAL_DOCUMENT_SELFIE]: Yup.mixed<File | null>()
