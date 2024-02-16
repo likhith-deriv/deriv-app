@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Field, FieldProps } from 'formik';
 import { Input, Text } from '@deriv-com/ui';
-import { WalletDatePicker } from '../../components/base/WalletDatePicker';
+import { WalletDatePicker } from '../../components/DatePicker';
 import { TManualDocumentTypes } from '../../constants/manualFormConstants';
 import { useManualForm } from '../../hooks';
 import { getFieldsConfig, getTitleForFormInputs } from '../../utils/manualFormUtils';
