@@ -4,13 +4,12 @@ import { useOnClickOutside } from 'usehooks-ts';
 import { Input } from '@deriv-com/ui';
 import CalendarIcon from '../../assets/date-picker/ic-calendar.svg';
 import unixToDateString from '../base/utils';
-import { WalletTextFieldProps } from '../base/WalletTextField/WalletTextField';
 import 'react-calendar/dist/Calendar.css';
 import './DatePicker.scss';
 
 interface TDatePickerProps extends ComponentProps<typeof Input> {
     errorMessage?: string;
-    isInvalid?: WalletTextFieldProps['isInvalid'];
+    isInvalid?: boolean;
     maxDate?: Date;
     minDate?: Date;
     mobileAlignment?: 'above' | 'below';
