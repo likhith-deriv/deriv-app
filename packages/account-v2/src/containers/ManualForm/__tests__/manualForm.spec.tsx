@@ -66,9 +66,9 @@ describe('ManualForm', () => {
 
     it('should display the error message if the document expiry date is empty', async () => {
         renderComponent({ selectedDocument: 'passport' });
+        userEvent.type(screen.getByRole('textbox', { name: 'Expiry date*' }), '');
+        userEvent.tab();
         await waitFor(() => {
-            userEvent.type(screen.getByRole('textbox', { name: 'Expiry date*' }), '');
-            userEvent.tab();
             expect(screen.getByText(/Expiry date is required./)).toBeInTheDocument();
         });
     });
