@@ -74,7 +74,7 @@ const DatePicker = ({
                 rightPlaceholder={
                     <button
                         className='datepicker__button'
-                        data-testid='datepicker_button'
+                        data-testid='dt_datepicker_button'
                         disabled={disabled}
                         onClick={toggleCalendar}
                         type='button'
@@ -88,7 +88,7 @@ const DatePicker = ({
             {isCalendarOpen && (
                 <div
                     className={`datepicker__container datepicker__container--${mobileAlignment}`}
-                    data-testid='datepicker_container'
+                    data-testid='dt_datepicker_container'
                 >
                     <Calendar
                         formatShortWeekday={customFormatShortWeekday}
