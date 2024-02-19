@@ -22,7 +22,7 @@ function customFormatShortWeekday(_locale: string | undefined, date: Date) {
 }
 
 // TODO: Move this component to @deriv-com/ui
-const WalletDatePicker = ({
+const DatePicker = ({
     defaultValue,
     disabled,
     errorMessage,
@@ -104,4 +104,4 @@ const WalletDatePicker = ({
     );
 };
 
-export default WalletDatePicker;
+export default DatePicker;
