@@ -34,6 +34,7 @@ const DatePicker = ({
     onBlur,
     onChange,
     onDateChange,
+    ...props
 }: TDatePickerProps) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(defaultValue ? new Date('') : null);
     const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
@@ -63,9 +64,7 @@ const DatePicker = ({
     return (
         <div className='datepicker' ref={datePickerRef}>
             <Input
-                aria-label={label}
-                autoComplete='off'
-                className='w-full'
+                {...props}
                 error={isInvalid}
                 label={label}
                 message={isInvalid ? errorMessage?.toString() : ''}
