@@ -61,7 +61,7 @@ const WalletDatePicker = ({
     }, [selectedDate]);
 
     return (
-        <div className='wallets-datepicker' ref={datePickerRef}>
+        <div className='datepicker' ref={datePickerRef}>
             <Input
                 aria-label={label}
                 autoComplete='off'
@@ -74,8 +74,8 @@ const WalletDatePicker = ({
                 onClick={toggleCalendar}
                 rightPlaceholder={
                     <button
-                        className='wallets-datepicker__button'
-                        data-testid='wallets_datepicker_button'
+                        className='datepicker__button'
+                        data-testid='datepicker_button'
                         disabled={disabled}
                         onClick={toggleCalendar}
                         type='button'
@@ -88,8 +88,8 @@ const WalletDatePicker = ({
             />
             {isCalendarOpen && (
                 <div
-                    className={`wallets-datepicker__container wallets-datepicker__container--${mobileAlignment}`}
-                    data-testid='wallets_datepicker_container'
+                    className={`datepicker__container datepicker__container--${mobileAlignment}`}
+                    data-testid='datepicker_container'
                 >
                     <Calendar
                         formatShortWeekday={customFormatShortWeekday}
