@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Formik, FormikValues } from 'formik';
 import { useTranslations } from '@deriv-com/translations';
-import { InlineMessage, Loader, Text } from '@deriv-com/ui';
+import { InlineMessage, Loader, Text, useDevice } from '@deriv-com/ui';
 import { ModalStepWrapper } from '../../../../components';
 import { THooks } from '../../../../types';
 import { Footer } from '../components';
@@ -16,7 +16,9 @@ type TPoaProps = {
 
 const Poa: React.FC<TPoaProps> = ({ onCompletion }) => {
     const { localize } = useTranslations();
+    const { isDesktop } = useDevice();
     const {
+        countryCode,
         errorSettings,
         initialStatus,
         initialValues,
@@ -74,8 +76,20 @@ const Poa: React.FC<TPoaProps> = ({ onCompletion }) => {
                                     <Text>{localize(errorSettings.message)}</Text>
                                 </InlineMessage>
                             )}
-                            <AddressSection />
-                            <DocumentSubmission />
+                            {isDesktop ? (
+                                <Fragment>
+                                    <AddressSection />
+                                    <DocumentSubmission countryCode={countryCode as string} />
+                                </Fragment>
+                            ) : (
+                                <Fragment>
+                                    <Text size='xs'>
+                                        {localize(
+                                            'To start trading with your real account, please complete the following steps:'
+                                        )}
+                                    </Text>
+                                </Fragment>
+                            )}
                         </div>
                     </ModalStepWrapper>
                 );

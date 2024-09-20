@@ -71,7 +71,7 @@ const usePoa = () => {
                 // upload POA document using document_upload
                 await uploadDocument({
                     document_issuing_country: settings?.country_code ?? undefined,
-                    document_type: 'proofaddress',
+                    document_type: values.documentType,
                     file: values.poaFile,
                 });
 
@@ -94,6 +94,9 @@ const usePoa = () => {
     );
 
     return {
+        /** Country code of Client's residence */
+        countryCode: settings?.country_code,
+
         /** Error returned from API calls for address details update and POA document upload */
         errorSettings,
 
