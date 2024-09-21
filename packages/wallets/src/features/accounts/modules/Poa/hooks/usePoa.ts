@@ -1,9 +1,7 @@
 import { useCallback, useState } from 'react';
 import { FormikValues } from 'formik';
 import { DocumentUploadStatus, useDocumentUpload, useSettings, useStatesList } from '@deriv/api-v2';
-import { TAddressDetails, TDocumentSubmission } from '../types';
-
-type TPoaValues = TAddressDetails & TDocumentSubmission;
+import { TPoaValues } from '../types';
 
 const usePoa = () => {
     const {

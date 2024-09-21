@@ -69,7 +69,7 @@ const POAMobileLayout = observer(
                 !!errors.address_state &&
                 !!errors.address_postcode
             );
-        }, [values]);
+        }, [values, errors, step.id]);
 
         return (
             <div className='poa-mobile-layout'>

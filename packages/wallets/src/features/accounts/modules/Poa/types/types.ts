@@ -8,6 +8,12 @@ export type TAddressDetails = {
     zipCodeLine: THooks.AccountSettings['address_postcode'];
 };
 
+export type TPoaValues = TAddressDetails & TDocumentSubmission;
+
+export type TAddressSectionProps = {
+    hasError?: boolean;
+};
+
 export type TDocumentSubmission = { documentType?: string; poaFile?: File };
 
 export type TDocumentSubmissionProps = {
