@@ -63,7 +63,7 @@ const FileUploaderContainer = ({
                                 list_items={document_list}
                                 type='text'
                                 value={field.value?.text}
-                                placeholder={localize('Select a document')}
+                                placeholder={localize('Type of document')}
                                 onItemSelection={(item: TListItem) => {
                                     setFieldValue('document_type', item, true);
                                 }}

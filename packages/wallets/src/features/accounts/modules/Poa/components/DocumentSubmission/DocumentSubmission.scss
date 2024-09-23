@@ -121,5 +121,9 @@
         flex-direction: column;
         gap: 1.6rem;
         align-self: stretch;
+
+        label {
+            text-transform: none !important;
+        }
     }
 }

@@ -31,12 +31,12 @@
     padding: 0.4rem 1.6rem;
     align-items: center;
     height: 5.2rem;
+    column-gap: 1.6rem;
     display: flex;
+
     &__item {
         display: flex;
     }
-    font-size: 12px;
-    line-height: 18px;
 }
 
 .wallets-progress-bar {
