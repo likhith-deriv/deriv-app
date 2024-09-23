@@ -11,7 +11,6 @@ import { usePoa } from './hooks';
 import { getPoaValidationSchema } from './utils';
 import './Poa.scss';
 
-
 type TPoaProps = {
     onCompletion?: VoidFunction;
 };
@@ -49,8 +48,6 @@ const Poa: React.FC<TPoaProps> = ({ onCompletion }) => {
     };
 
     if (showLoader) return <Loader />;
-
-    // const handleClickNext = () => setStep({ id: 2, text: localize('Upload proof of address') });
 
     return (
         <Formik
